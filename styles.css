@@ -2848,4 +2848,100 @@ section[id] {
     opacity: 1;
   }
 }
+
+/* ============================================================
+   VISITOR ANALYTICS DISPLAY (Live Viewers + Total Visits)
+   ============================================================ */
+.visitor-stats {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+  margin-bottom: 6px;
+  transition: opacity 0.3s ease, border-color 0.3s ease;
+}
+
+.visitor-stats .live-viewers,
+.visitor-stats .total-visits {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.visitor-stats .stats-divider {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.8rem;
+  user-select: none;
+}
+
+.visitor-stats .live-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+  animation: liveDotPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes liveDotPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.75;
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+}
+
+.visitor-stats .stats-num {
+  color: #10b981;
+  font-weight: 700;
+  transition: opacity 0.3s ease;
+}
+
+.visitor-stats .stats-label {
+  color: var(--muted);
+}
+
+.visitor-stats.is-fallback .stats-divider,
+.visitor-stats.is-fallback .total-visits {
+  display: none;
+}
+
+.visitor-stats.is-fallback .stats-label {
+  color: var(--text);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visitor-stats .live-dot {
+    animation: none;
+  }
+  .visitor-stats .stats-num {
+    transition: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .visitor-stats {
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    padding: 6px 10px;
+    font-size: 0.68rem;
+  }
+}
+
 }

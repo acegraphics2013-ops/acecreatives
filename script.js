@@ -437,4 +437,93 @@
   /* ---------- Footer year ---------- */
   const yearTarget = document.getElementById('year');
   if (yearTarget) yearTarget.textContent = new Date().getFullYear();
+
+  /* ---------- Real Visitor Analytics (Live Viewers + Total Visits) ---------- */
+  (function initVisitorAnalytics() {
+    const container = document.getElementById('visitorStats');
+    const liveElem = document.getElementById('liveViewerCount');
+    const totalElem = document.getElementById('totalVisitCount');
+    if (!container || !liveElem || !totalElem) return;
+
+    // Retrieve or create persistent anonymous session ID
+    let sessionId = sessionStorage.getItem('ace_session_id');
+    if (!sessionId) {
+      sessionId = (typeof crypto !== 'undefined' && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : 's_' + Math.random().toString(36).substring(2, 11) + '_' + Date.now().toString(36);
+      sessionStorage.setItem('ace_session_id', sessionId);
+    }
+
+    const numFormatter = new Intl.NumberFormat('en-US');
+
+    function updateUI(live, total) {
+      if (typeof live === 'number' && typeof total === 'number' && !isNaN(live) && !isNaN(total)) {
+        liveElem.textContent = live;
+        totalElem.textContent = numFormatter.format(total);
+        container.classList.remove('is-fallback');
+      } else {
+        showFallback();
+      }
+    }
+
+    function showFallback() {
+      container.classList.add('is-fallback');
+      if (liveElem) liveElem.textContent = '';
+      const label = container.querySelector('.live-viewers .stats-label');
+      if (label) label.textContent = 'Portfolio online';
+    }
+
+    async function sendAnalytics(endpoint, payload = {}) {
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId, ...payload })
+        });
+        if (!res.ok) throw new Error('API response failed');
+        const data = await res.json();
+        if (data && data.success && typeof data.liveViewers === 'number') {
+          updateUI(data.liveViewers, data.totalVisits);
+        } else {
+          showFallback();
+        }
+      } catch (err) {
+        showFallback();
+      }
+    }
+
+    // Determine whether to count new visit or perform heartbeat
+    const hasVisited = sessionStorage.getItem('ace_visited');
+    if (!hasVisited) {
+      sendAnalytics('/api/visitor').then(() => {
+        sessionStorage.setItem('ace_visited', '1');
+      });
+    } else {
+      sendAnalytics('/api/heartbeat');
+    }
+
+    // Active heartbeat polling every 25 seconds
+    const HEARTBEAT_MS = 25000;
+    setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        sendAnalytics('/api/heartbeat');
+      }
+    }, HEARTBEAT_MS);
+
+    // Refresh instantly when returning to the tab
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        sendAnalytics('/api/heartbeat');
+      }
+    });
+
+    // Notify backend on tab unload
+    window.addEventListener('pagehide', () => {
+      if (navigator.sendBeacon) {
+        const blob = new Blob([JSON.stringify({ sessionId, action: 'leave' })], { type: 'application/json' });
+        navigator.sendBeacon('/api/heartbeat', blob);
+      }
+    });
+  })();
 })();
+
