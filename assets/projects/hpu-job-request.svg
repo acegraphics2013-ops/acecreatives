@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-hpu" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f140c" />
+      <stop offset="50%" stop-color="#141c10" />
+      <stop offset="100%" stop-color="#090d07" />
+    </linearGradient>
+    <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(238, 92, 33, 0.08)" stroke-width="1" />
+    </pattern>
+  </defs>
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bg-hpu)" />
+  <rect width="1200" height="675" fill="url(#grid-pattern)" />
+  
+  <!-- Technical Crop Marks -->
+  <path d="M 30 50 L 30 30 L 50 30" stroke="#ee5c21" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 1170 50 L 1170 30 L 1150 30" stroke="#ee5c21" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 30 625 L 30 645 L 50 645" stroke="#ee5c21" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 1170 625 L 1170 645 L 1150 645" stroke="#ee5c21" stroke-width="2" fill="none" opacity="0.6"/>
+  
+  <!-- Monospace Label -->
+  <text x="60" y="65" font-family="Courier, monospace" font-size="14" fill="#ee5c21" letter-spacing="3" opacity="0.8">SYSTEM // WORKFLOW PLATFORM // QR TRACKING [01]</text>
+  <text x="1140" y="65" font-family="Courier, monospace" font-size="14" fill="#888880" text-anchor="end" letter-spacing="2">300 DPI · PREPRESS OK</text>
+  
+  <!-- Main Interface Visual Mockup -->
+  <rect x="60" y="100" width="1080" height="515" rx="8" fill="#1d0a05" stroke="rgba(238, 92, 33, 0.2)" stroke-width="1.5" />
+  
+  <!-- Header Bar -->
+  <rect x="60" y="100" width="1080" height="50" fill="#182215" />
+  <circle cx="90" cy="125" r="6" fill="#ff5f56" />
+  <circle cx="110" cy="125" r="6" fill="#ffbd2e" />
+  <circle cx="130" cy="125" r="6" fill="#27c93f" />
+  <text x="160" y="130" font-family="Courier, monospace" font-size="13" fill="#ee5c21" opacity="0.9">hpu-system.internal.gov/dashboard/kanban</text>
+  
+  <!-- Kanban Columns -->
+  <!-- Col 1 -->
+  <rect x="90" y="175" width="220" height="400" rx="4" fill="#0d120a" stroke="rgba(255,255,255,0.05)" />
+  <text x="105" y="200" font-family="sans-serif" font-size="13" font-weight="bold" fill="#ee5c21">INTAKE REQUESTS (12)</text>
+  <rect x="105" y="215" width="190" height="85" rx="4" fill="#240e07" stroke="rgba(238, 92, 33, 0.3)" />
+  <text x="118" y="238" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">IEC Poster Design #402</text>
+  <text x="118" y="256" font-family="sans-serif" font-size="11" fill="#889980">Requested by: Public Health</text>
+  <rect x="118" y="270" width="60" height="16" rx="2" fill="#ee5c21" />
+  <text x="148" y="282" font-family="sans-serif" font-size="9" font-weight="bold" fill="#000" text-anchor="middle">URGENT</text>
+  
+  <!-- Col 2 -->
+  <rect x="330" y="175" width="220" height="400" rx="4" fill="#0d120a" stroke="rgba(255,255,255,0.05)" />
+  <text x="345" y="200" font-family="sans-serif" font-size="13" font-weight="bold" fill="#e6e6e0">IN REVIEW &amp; APPROVAL</text>
+  <rect x="345" y="215" width="190" height="85" rx="4" fill="#151b14" />
+  <text x="358" y="238" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Video Coverage Request</text>
+  <text x="358" y="256" font-family="sans-serif" font-size="11" fill="#889980">Pending Division Chief</text>
+
+  <!-- Col 3 -->
+  <rect x="570" y="175" width="220" height="400" rx="4" fill="#0d120a" stroke="rgba(255,255,255,0.05)" />
+  <text x="585" y="200" font-family="sans-serif" font-size="13" font-weight="bold" fill="#e6e6e0">IN PRODUCTION</text>
+  <rect x="585" y="215" width="190" height="110" rx="4" fill="#291008" stroke="#ee5c21" stroke-width="1" />
+  <text x="598" y="238" font-family="sans-serif" font-size="12" font-weight="bold" fill="#ffffff">Caraga Convention Tarps</text>
+  <text x="598" y="256" font-family="sans-serif" font-size="11" fill="#ee5c21">Large Format Printer #2</text>
+  <!-- Progress bar -->
+  <rect x="598" y="275" width="164" height="6" rx="3" fill="#0d120a" />
+  <rect x="598" y="275" width="120" height="6" rx="3" fill="#ee5c21" />
+  <text x="598" y="305" font-family="Courier, monospace" font-size="10" fill="#889980">QR Code Tracked</text>
+
+  <!-- Col 4 / Sidebar -->
+  <rect x="810" y="175" width="310" height="400" rx="4" fill="#141a12" border="1px solid rgba(255,255,255,0.1)" />
+  <text x="830" y="205" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff">QR TRACKING &amp; TIMELINE</text>
+  <!-- Mock QR Code -->
+  <rect x="830" y="225" width="80" height="80" fill="#ffffff" />
+  <rect x="840" y="235" width="25" height="25" fill="#000000" />
+  <rect x="875" y="235" width="25" height="25" fill="#000000" />
+  <rect x="840" y="270" width="25" height="25" fill="#000000" />
+  <rect x="870" y="270" width="15" height="15" fill="#000000" />
+  <text x="925" y="245" font-family="Courier, monospace" font-size="12" font-weight="bold" fill="#ee5c21">BATCH #8849-PH</text>
+  <text x="925" y="265" font-family="sans-serif" font-size="11" fill="#889980">Status: Print Queue</text>
+  <text x="925" y="285" font-family="sans-serif" font-size="11" fill="#889980">Operator: Ace Cabuga</text>
+
+  <line x1="830" y1="325" x2="1090" y2="325" stroke="rgba(255,255,255,0.1)" />
+  <text x="830" y="355" font-family="Courier, monospace" font-size="11" fill="#ee5c21">EVALUATION METRICS</text>
+  <text x="830" y="380" font-family="sans-serif" font-size="12" fill="#ffffff">Turnaround Time Avg: 1.4 Days</text>
+  <text x="830" y="405" font-family="sans-serif" font-size="12" fill="#ffffff">Satisfaction Score: 98.4%</text>
+  
+  <!-- Overlay Title -->
+  <text x="60" y="645" font-family="Space Grotesk, sans-serif" font-size="28" font-weight="bold" fill="#ffffff">HPU Job Request &amp; Workflow System</text>
+</svg>

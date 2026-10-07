@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-profile" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141414" />
+      <stop offset="50%" stop-color="#1c1c1c" />
+      <stop offset="100%" stop-color="#0a0a0a" />
+    </linearGradient>
+    <pattern id="profile-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" />
+    </pattern>
+  </defs>
+  
+  <rect width="600" height="750" fill="url(#bg-profile)" />
+  <rect width="600" height="750" fill="url(#profile-grid)" />
+
+  <!-- Technical Marks -->
+  <!-- Corner crop marks -->
+  <path d="M 30 50 L 30 30 L 50 30" stroke="#ee5c21" stroke-width="2" fill="none"/>
+  <path d="M 570 50 L 570 30 L 550 30" stroke="#ee5c21" stroke-width="2" fill="none"/>
+  <path d="M 30 700 L 30 720 L 50 720" stroke="#ee5c21" stroke-width="2" fill="none"/>
+  <path d="M 570 700 L 570 720 L 550 720" stroke="#ee5c21" stroke-width="2" fill="none"/>
+
+  <!-- Registration Symbol -->
+  <circle cx="300" cy="80" r="16" fill="none" stroke="#ee5c21" stroke-width="1.5" opacity="0.8"/>
+  <line x1="300" y1="58" x2="300" y2="102" stroke="#ee5c21" stroke-width="1.5" opacity="0.8"/>
+  <line x1="278" y1="80" x2="322" y2="80" stroke="#ee5c21" stroke-width="1.5" opacity="0.8"/>
+
+  <!-- Giant Monogram AC -->
+  <text x="300" y="440" font-family="Space Grotesk, Inter, sans-serif" font-size="280" font-weight="900" fill="#ee5c21" text-anchor="middle" letter-spacing="-18" opacity="0.95">AC</text>
+
+  <!-- Overlay Grid Labeling -->
+  <rect x="180" y="490" width="240" height="34" rx="4" fill="#000000" stroke="#ee5c21" stroke-width="1" />
+  <text x="300" y="512" font-family="Courier, monospace" font-size="12" fill="#ee5c21" text-anchor="middle" letter-spacing="2">ACE RAZ CABUGA // 2026</text>
+
+  <text x="300" y="580" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle">CREATIVE TECHNOLOGIST</text>
+  <text x="300" y="610" font-family="Courier, monospace" font-size="13" fill="#888880" text-anchor="middle">FULL-STACK · UI/UX · PRINT ARTIST</text>
+
+  <text x="300" y="715" font-family="Courier, monospace" font-size="11" fill="#888880" text-anchor="middle">REPLACE WITH assets/profile/ace-cabuga.jpg</text>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-ref" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1214" />
+      <stop offset="100%" stop-color="#050a0c" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg-ref)" />
+  
+  <text x="60" y="65" font-family="Courier, monospace" font-size="14" fill="#00f0ff" letter-spacing="3">HEALTHCARE // REFERRAL MONITORING BOARD [03]</text>
+  <text x="1140" y="65" font-family="Courier, monospace" font-size="14" fill="#888880" text-anchor="end">REAL-TIME MONITORING</text>
+  
+  <!-- Main Dashboard Container -->
+  <rect x="60" y="100" width="1080" height="470" rx="8" fill="#0d171a" stroke="rgba(0,240,255,0.2)" stroke-width="1.5" />
+  
+  <!-- Hospital Ward Cards Grid -->
+  <rect x="90" y="130" width="320" height="190" rx="6" fill="#132328" stroke="rgba(0,240,255,0.3)" />
+  <text x="110" y="165" font-family="sans-serif" font-size="16" font-weight="bold" fill="#ffffff">Emergency Department</text>
+  <text x="110" y="190" font-family="Courier, monospace" font-size="12" fill="#00f0ff">Active Referrals: 18</text>
+  <text x="110" y="215" font-family="Courier, monospace" font-size="12" fill="#ff5f56">Critical Cases: 04</text>
+  <rect x="110" y="240" width="280" height="8" rx="4" fill="#091012" />
+  <rect x="110" y="240" width="220" height="8" rx="4" fill="#ff5f56" />
+  <text x="110" y="275" font-family="sans-serif" font-size="11" fill="#88a0a8">Turnaround Time: 18 mins avg</text>
+
+  <rect x="440" y="130" width="320" height="190" rx="6" fill="#132328" stroke="rgba(255,255,255,0.08)" />
+  <text x="460" y="165" font-family="sans-serif" font-size="16" font-weight="bold" fill="#ffffff">ICU Ward Availability</text>
+  <text x="460" y="190" font-family="Courier, monospace" font-size="12" fill="#ee5c21">Beds Available: 03 / 12</text>
+  <text x="460" y="215" font-family="Courier, monospace" font-size="12" fill="#88a0a8">Pending Transfer: 02</text>
+  <rect x="460" y="240" width="280" height="8" rx="4" fill="#091012" />
+  <rect x="460" y="240" width="210" height="8" rx="4" fill="#ee5c21" />
+
+  <rect x="790" y="130" width="320" height="190" rx="6" fill="#132328" stroke="rgba(255,255,255,0.08)" />
+  <text x="810" y="165" font-family="sans-serif" font-size="16" font-weight="bold" fill="#ffffff">Pediatric &amp; Surgical</text>
+  <text x="810" y="190" font-family="Courier, monospace" font-size="12" fill="#00f0ff">Total Occupancy: 82%</text>
+
+  <!-- Table View -->
+  <rect x="90" y="340" width="1020" height="200" rx="6" fill="#091012" />
+  <text x="110" y="375" font-family="Courier, monospace" font-size="12" fill="#00f0ff">PATIENT ID | ORIGIN FACILITY | TRIAGE LEVEL | STATUS | WAIT TIME</text>
+  <line x1="110" y1="390" x2="1090" y2="390" stroke="rgba(0,240,255,0.2)" />
+  <text x="110" y="420" font-family="sans-serif" font-size="13" fill="#ffffff">#REF-2026-091 · District Hospital A · LEVEL 1 STAT · Incoming · 4m ago</text>
+  <text x="110" y="455" font-family="sans-serif" font-size="13" fill="#ffffff">#REF-2026-090 · Municipal Health Unit B · LEVEL 2 URGENT · Accepted · 12m ago</text>
+  <text x="110" y="490" font-family="sans-serif" font-size="13" fill="#ffffff">#REF-2026-089 · City Hospital C · LEVEL 3 ROUTINE · Bed Assigned · 28m ago</text>
+
+  <text x="60" y="640" font-family="Space Grotesk, sans-serif" font-size="26" font-weight="bold" fill="#ffffff">Referral Operations Board — Healthcare Dashboard</text>
+</svg>
