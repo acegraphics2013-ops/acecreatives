@@ -918,8 +918,8 @@ section[id] {
 }
 
 .project-art {
-  min-height: 340px;
-  padding: 22px;
+  min-height: 240px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -972,9 +972,9 @@ section[id] {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  padding: 14px 16px;
+  padding: 12px 14px;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   opacity: 0.9;
@@ -985,10 +985,10 @@ section[id] {
   position: relative;
   z-index: 2;
   font-family: var(--font-display);
-  font-size: clamp(3.8rem, 7vw, 7rem);
-  line-height: 0.8;
+  font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+  line-height: 0.85;
   font-weight: 700;
-  letter-spacing: -0.07em;
+  letter-spacing: -0.06em;
   transition: letter-spacing 0.3s ease;
 }
 
@@ -2583,7 +2583,7 @@ section[id] {
   }
 
   .project-art {
-    min-height: 250px;
+    min-height: 200px;
   }
 
   .production-steps {
