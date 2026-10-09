@@ -532,5 +532,88 @@
       }
     });
   })();
+
+  /* ---------- Review Modal Controller ---------- */
+  (function initReviewModal() {
+    const rModal = document.getElementById('reviewModal');
+    const rBackdrop = document.getElementById('reviewModalBackdrop');
+    const rCloseBtn = document.getElementById('closeReviewModal');
+    const rForm = document.getElementById('reviewForm');
+    const rNote = document.getElementById('reviewFormNote');
+    const rSubmitBtn = document.getElementById('submitReviewBtn');
+
+    if (!rModal) return;
+
+    function openRModal() {
+      rModal.removeAttribute('hidden');
+      rModal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      const firstInput = rForm ? rForm.querySelector('input[name="name"]') : null;
+      if (firstInput) setTimeout(() => firstInput.focus(), 100);
+    }
+
+    function closeRModal() {
+      rModal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      setTimeout(() => rModal.setAttribute('hidden', 'true'), 300);
+    }
+
+    document.querySelectorAll('.open-review-modal-btn').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openRModal();
+      });
+    });
+
+    if (rBackdrop) rBackdrop.addEventListener('click', closeRModal);
+    if (rCloseBtn) rCloseBtn.addEventListener('click', closeRModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && rModal.classList.contains('is-open')) {
+        closeRModal();
+      }
+    });
+
+    if (rForm) {
+      rForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        if (rNote) {
+          rNote.style.color = 'var(--text)';
+          rNote.textContent = 'Sending endorsement...';
+        }
+        if (rSubmitBtn) rSubmitBtn.disabled = true;
+
+        try {
+          const formData = new FormData(rForm);
+          const res = await fetch(rForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (res.ok) {
+            if (rNote) {
+              rNote.style.color = '#10b981';
+              rNote.textContent = '✓ Thank you! Your endorsement has been sent to Ace.';
+            }
+            rForm.reset();
+            setTimeout(() => closeRModal(), 2400);
+          } else {
+            throw new Error('Server returned non-200');
+          }
+        } catch (err) {
+          if (rNote) {
+            rNote.style.color = '#ef4444';
+            rNote.textContent = 'Form submission paused. Opening email app...';
+          }
+          setTimeout(() => {
+            window.location.href = "mailto:acegraphics2013@gmail.com?subject=Client%20Review%20%26%20Testimonial%20%E2%80%94%20Ace%20Raz%20Cabuga";
+          }, 800);
+        } finally {
+          if (rSubmitBtn) rSubmitBtn.disabled = false;
+        }
+      });
+    }
+  })();
 })();
 

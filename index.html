@@ -1248,9 +1248,9 @@
               <h3>Have you worked with Ace?</h3>
               <p>If you've collaborated on a web application, brand identity, or print project, share your endorsement directly via email!</p>
               <div class="suggest-actions">
-                <a class="btn btn-primary btn-small" href="mailto:acegraphics2013@gmail.com?subject=Client%20Review%20%26%20Testimonial%20%E2%80%94%20Ace%20Raz%20Cabuga&amp;body=Hi%20Ace%2C%0A%0AHere%20is%20my%20feedback%20%2F%20testimonial%20for%20our%20project%3A%0A%0AName%3A%20%5BYour%20Name%5D%0ARole%20%2F%20Organization%3A%20%5BCompany%20%2F%20Office%5D%0AProject%20Type%3A%20%5BWeb%20System%20%2F%20Branding%20%2F%20Print%20Production%5D%0ARating%3A%205%20Stars%0A%0ATestimonial%20%2F%20Review%20Message%3A%0A%22%5BWrite%20your%20review%20here...%5D%22%0A%0ABest%20regards%2C%0A%5BYour%20Name%5D">
+                <button class="btn btn-primary btn-small open-review-modal-btn" type="button">
                   <span>Submit via Email ↗</span>
-                </a>
+                </button>
               </div>
             </div>
           </article>
@@ -1290,9 +1290,9 @@
               <h3>Have you worked with Ace?</h3>
               <p>If you've collaborated on a web application, brand identity, or print project, share your endorsement directly via email!</p>
               <div class="suggest-actions">
-                <a class="btn btn-primary btn-small" href="mailto:acegraphics2013@gmail.com?subject=Client%20Review%20%26%20Testimonial%20%E2%80%94%20Ace%20Raz%20Cabuga&amp;body=Hi%20Ace%2C%0A%0AHere%20is%20my%20feedback%20%2F%20testimonial%20for%20our%20project%3A%0A%0AName%3A%20%5BYour%20Name%5D%0ARole%20%2F%20Organization%3A%20%5BCompany%20%2F%20Office%5D%0AProject%20Type%3A%20%5BWeb%20System%20%2F%20Branding%20%2F%20Print%20Production%5D%0ARating%3A%205%20Stars%0A%0ATestimonial%20%2F%20Review%20Message%3A%0A%22%5BWrite%20your%20review%20here...%5D%22%0A%0ABest%20regards%2C%0A%5BYour%20Name%5D">
+                <button class="btn btn-primary btn-small open-review-modal-btn" type="button">
                   <span>Submit via Email ↗</span>
-                </a>
+                </button>
               </div>
             </div>
           </article>
@@ -1468,6 +1468,60 @@
           <p id="mLessons"></p>
         </div>
       </div>
+    </div>
+  <!-- ============ REVIEW SUBMISSION MODAL ============ -->
+  <div class="review-modal" id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle" hidden>
+    <div class="review-modal-backdrop" id="reviewModalBackdrop"></div>
+    <div class="review-modal-card">
+      <button class="review-modal-close" type="button" id="closeReviewModal" aria-label="Close modal">✕</button>
+      <div class="review-modal-header">
+        <span class="suggest-badge">Client &amp; Colleague Feedback</span>
+        <h3 id="reviewModalTitle">Share Your Endorsement</h3>
+        <p>Your review will be sent directly to <strong>acegraphics2013@gmail.com</strong>.</p>
+      </div>
+
+      <form class="review-modal-form" id="reviewForm" action="https://formsubmit.co/acegraphics2013@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Client Review / Endorsement — Ace Raz Cabuga">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+
+        <div class="form-row">
+          <label>Your Name
+            <input type="text" name="name" placeholder="e.g. Maria Santos" required autocomplete="name" />
+          </label>
+          <label>Role &amp; Organization
+            <input type="text" name="role_organization" placeholder="e.g. Committee Chair, PNA Caraga" required />
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>Service Category
+            <select name="service_category" required>
+              <option>Web &amp; Systems Development</option>
+              <option>Event Identity &amp; Print</option>
+              <option>Large Format &amp; Prepress</option>
+              <option>Graphic Design &amp; Branding</option>
+              <option>Technical Support &amp; Maintenance</option>
+            </select>
+          </label>
+          <label>Rating
+            <select name="rating">
+              <option>★★★★★ (5 Stars - Excellent)</option>
+              <option>★★★★☆ (4 Stars - Great)</option>
+            </select>
+          </label>
+        </div>
+
+        <label>Your Review / Endorsement
+          <textarea name="review_message" rows="4" placeholder="Describe your experience collaborating with Ace, quality of work, turnaround time..." required></textarea>
+        </label>
+
+        <div class="review-modal-actions">
+          <button class="btn btn-primary" type="submit" id="submitReviewBtn"><span>Send Endorsement ↗</span></button>
+          <a class="btn btn-outline" href="mailto:acegraphics2013@gmail.com?subject=Client%20Review%20%26%20Testimonial%20%E2%80%94%20Ace%20Raz%20Cabuga"><span>Open Email App ↗</span></a>
+        </div>
+        <p class="form-note" id="reviewFormNote" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </div>
 

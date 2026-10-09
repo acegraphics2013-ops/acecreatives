@@ -3335,3 +3335,157 @@ section[id] {
     margin-top: 6px;
   }
 }
+
+/* ==========================================================================
+   Review Submission Modal Styles
+   ========================================================================== */
+.review-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.review-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.review-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.review-modal-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 560px;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(238, 92, 33, 0.1);
+  transform: scale(0.94) translateY(12px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.review-modal.is-open .review-modal-card {
+  transform: scale(1) translateY(0);
+}
+
+.review-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #d1d1c7;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.review-modal-close:hover {
+  background: var(--accent, #ee5c21);
+  color: #0b0b0b;
+  border-color: var(--accent, #ee5c21);
+}
+
+.review-modal-header {
+  margin-bottom: 24px;
+}
+
+.review-modal-header h3 {
+  font-size: 1.35rem;
+  margin: 10px 0 6px 0;
+  color: #ffffff;
+}
+
+.review-modal-header p {
+  font-size: 0.88rem;
+  color: var(--muted, #8e8e86);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.review-modal-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.84rem;
+  font-family: var(--font-mono, monospace);
+  color: #c5c5bb;
+  margin-bottom: 16px;
+}
+
+.review-modal-form input,
+.review-modal-form select,
+.review-modal-form textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #ffffff;
+  font-family: var(--font-sans, inherit);
+  font-size: 0.92rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.review-modal-form select option {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.review-modal-form input:focus,
+.review-modal-form select:focus,
+.review-modal-form textarea:focus {
+  outline: none;
+  border-color: var(--accent, #ee5c21);
+  background: rgba(238, 92, 33, 0.05);
+}
+
+.review-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+@media (max-width: 580px) {
+  .review-modal-card {
+    padding: 22px;
+  }
+  .review-modal-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .review-modal-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
