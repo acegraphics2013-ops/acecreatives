@@ -1,6 +1,6 @@
 # Ace Raz Cabuga Portfolio
 
-Creative Technologist · Full-Stack Developer · Graphic & Print Artist.
+Creative Technologist · Web Developer · Graphic & Print Artist.
 Designing ideas. Building systems. Producing experiences.
 
 ## Overview
