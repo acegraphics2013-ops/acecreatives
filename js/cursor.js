@@ -40,7 +40,7 @@
 
     const text = document.createElement('span');
     text.className = 'cursor-text';
-    text.textContent = 'VIEW';
+    text.textContent = '';
     ring.appendChild(text);
 
     // Create Click Ripple Element
@@ -144,14 +144,6 @@
         ring.classList.remove('is-hidden');
       }
 
-      // Project Card Check ("VIEW" mode)
-      const cardEl = target.closest('.project-card, .project-art, .modal-shot, .education-card, .portrait-shell');
-      if (cardEl) {
-        ring.classList.add('is-view');
-        pointer.classList.add('is-view');
-        return;
-      }
-
       // Headings Check
       const headingEl = target.closest('h1, h2, h3, .display, .hero-title, .about-title h2');
       if (headingEl) {
@@ -161,7 +153,7 @@
       }
 
       // Interactive Elements Check
-      const interactiveEl = target.closest('a, button, .btn, .nav-link, .filter-btn, .social-list a, .to-top-btn, .link-btn, .menu-toggle, [role="button"], .tool-tile');
+      const interactiveEl = target.closest('a, button, .btn, .nav-link, .filter-btn, .social-list a, .to-top-btn, .link-btn, .menu-toggle, [role="button"], .tool-tile, .project-card, .project-art, .modal-shot, .education-card, .portrait-shell');
       if (interactiveEl) {
         ring.classList.add('is-hover');
         pointer.classList.add('is-hover');
@@ -172,17 +164,12 @@
       const target = e.target;
       if (!target || !(target instanceof HTMLElement)) return;
 
-      if (target.closest('.project-card, .project-art, .modal-shot, .education-card, .portrait-shell')) {
-        ring.classList.remove('is-view');
-        pointer.classList.remove('is-view');
-      }
-
       if (target.closest('h1, h2, h3, .display, .hero-title, .about-title h2')) {
         ring.classList.remove('is-text');
         pointer.classList.remove('is-text');
       }
 
-      if (target.closest('a, button, .btn, .nav-link, .filter-btn, .social-list a, .to-top-btn, .link-btn, .menu-toggle, [role="button"], .tool-tile')) {
+      if (target.closest('a, button, .btn, .nav-link, .filter-btn, .social-list a, .to-top-btn, .link-btn, .menu-toggle, [role="button"], .tool-tile, .project-card, .project-art, .modal-shot, .education-card, .portrait-shell')) {
         ring.classList.remove('is-hover');
         pointer.classList.remove('is-hover');
       }

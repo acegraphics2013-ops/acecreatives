@@ -33,6 +33,7 @@
     "jobTitle": "Creative Technologist",
     "url": "https://example.com/",
     "sameAs": [
+      "https://www.behance.net/acegraphics2",
       "https://github.com/acegraphics2013-ops",
       "https://www.linkedin.com/in/ace-cabuga-17658629b",
       "https://www.facebook.com/ace.graphixs/"
@@ -62,17 +63,16 @@
 
     <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
       <a class="nav-link" href="#home"><span class="nav-num">01</span>Home</a>
-      <a class="nav-link" href="#work"><span class="nav-num">02</span>Work</a>
-      <a class="nav-link" href="#services"><span class="nav-num">03</span>Services</a>
-      <a class="nav-link" href="#production"><span class="nav-num">04</span>Production</a>
-      <a class="nav-link" href="#process"><span class="nav-num">05</span>Process</a>
-      <a class="nav-link" href="#skills"><span class="nav-num">06</span>Skills</a>
-      <a class="nav-link" href="#tools"><span class="nav-num">07</span>Tools</a>
-      <a class="nav-link" href="#about"><span class="nav-num">08</span>About</a>
-      <a class="nav-link" href="#experience"><span class="nav-num">09</span>Experience</a>
-      <a class="nav-link" href="#education"><span class="nav-num">10</span>Education</a>
+      <a class="nav-link" href="#services"><span class="nav-num">02</span>Services</a>
+      <a class="nav-link" href="#production"><span class="nav-num">03</span>Production</a>
+      <a class="nav-link" href="#process"><span class="nav-num">04</span>Process</a>
+      <a class="nav-link" href="#skills"><span class="nav-num">05</span>Skills</a>
+      <a class="nav-link" href="#tools"><span class="nav-num">06</span>Tools</a>
+      <a class="nav-link" href="#about"><span class="nav-num">07</span>About</a>
+      <a class="nav-link" href="#experience"><span class="nav-num">08</span>Experience</a>
+      <a class="nav-link" href="#education"><span class="nav-num">09</span>Education</a>
+      <a class="nav-link" href="#reviews"><span class="nav-num">10</span>Reviews</a>
       <a class="nav-link" href="#contact"><span class="nav-num">11</span>Contact</a>
-      <a class="nav-cta" href="#contact"><span>Inquire</span><i aria-hidden="true">↗</i></a>
     </nav>
   </header>
 
@@ -96,8 +96,8 @@
             communication, web systems, and print production.
           </p>
           <div class="hero-actions reveal">
-            <a class="btn btn-primary" href="#work"><span>View Selected Work</span><i aria-hidden="true">↓</i></a>
-            <a class="btn btn-ghost" href="#about"><span>About Me</span><i aria-hidden="true">→</i></a>
+            <a class="btn btn-primary" href="#services"><span>Explore Services</span><i aria-hidden="true">↓</i></a>
+            <a class="btn btn-ghost" href="https://www.behance.net/acegraphics2" target="_blank" rel="noopener"><span>Behance Portfolio</span><i aria-hidden="true">↗</i></a>
           </div>
           <p class="hero-small reveal">
             <span class="status-dot" aria-hidden="true"></span>
@@ -144,7 +144,7 @@
         </aside>
       </div>
 
-      <a class="scroll-hint reveal" href="#work" aria-label="Scroll to selected work">
+      <a class="scroll-hint reveal" href="#services" aria-label="Scroll to services">
         <span>Scroll</span><i aria-hidden="true"></i>
       </a>
 
@@ -171,193 +171,10 @@
       </div>
     </section>
 
-    <section class="section-pad section-line" id="work" aria-labelledby="work-title">
-      <div class="section-head reveal">
-        <div>
-          <span class="eyebrow">02 / Selected Work <span class="eyebrow-count">(07)</span></span>
-          <h2 id="work-title">Selected Work</h2>
-        </div>
-        <div class="section-side">
-          <p>A selection of systems, interfaces, visual identities, and production work.</p>
-          <p class="hint"><span id="projectCount">Showing 7 / 7</span> — select a filter below.</p>
-        </div>
-      </div>
-
-      <div class="project-filter reveal" role="group" aria-label="Project filters">
-        <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All <sup>7</sup></button>
-        <button class="filter-btn" type="button" data-filter="systems" aria-pressed="false">Systems
-          <sup>5</sup></button>
-        <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">Web <sup>5</sup></button>
-        <button class="filter-btn" type="button" data-filter="design" aria-pressed="false">Design <sup>3</sup></button>
-        <button class="filter-btn" type="button" data-filter="print" aria-pressed="false">Print <sup>2</sup></button>
-      </div>
-
-      <div class="project-grid" id="projectGrid">
-        <!-- 01 HPU -->
-        <article class="project-card reveal" data-category="systems web" data-project="hpu">
-          <!-- TODO: replace placeholder with <img src="assets/projects/hpu-job-request-cover.jpg" alt="HPU Job Request System dashboard" loading="lazy" /> -->
-          <div class="project-art art-one">
-            <div class="project-top"><span>Web Application</span><span>REF — HPU/01</span></div>
-            <span class="project-giant">HPU</span>
-            <small>Job Request System</small>
-            <span class="project-index">01 / 07</span>
-          </div>
-          <div class="project-info">
-            <div class="project-num">01</div>
-            <div>
-              <p class="project-cat">Web Application / Workflow System</p>
-              <h3>HPU Job Request System</h3>
-              <p>A centralized request and workflow management platform for graphic design, video production, coverage,
-                and IEC material requests.</p>
-              <div class="tags"><span>PHP</span><span>MySQL</span><span>JavaScript</span></div>
-              <button class="project-open" type="button" data-open="hpu">View case <i aria-hidden="true">→</i></button>
-            </div>
-          </div>
-        </article>
-
-        <!-- 02 KPI -->
-        <article class="project-card reveal" data-category="systems web" data-project="kpi">
-          <!-- TODO: replace placeholder with <img src="assets/projects/phu-kpi-cover.jpg" alt="PHU KPI-DPMS reports view" loading="lazy" /> -->
-          <div class="project-art art-two">
-            <div class="project-top"><span>Performance System</span><span>REF — KPI/02</span></div>
-            <span class="project-giant">KPI</span>
-            <small>Performance Management</small>
-            <span class="project-index">02 / 07</span>
-          </div>
-          <div class="project-info">
-            <div class="project-num">02</div>
-            <div>
-              <p class="project-cat">Performance Management System</p>
-              <h3>PHU KPI-DPMS</h3>
-              <p>A KPI monitoring and performance reporting platform designed for organizational planning and
-                management.
-              </p>
-              <div class="tags"><span>Node.js</span><span>Express</span><span>MySQL</span><span>EJS</span></div>
-              <button class="project-open" type="button" data-open="kpi">View case <i aria-hidden="true">→</i></button>
-            </div>
-          </div>
-        </article>
-
-        <!-- 03 Referral -->
-        <article class="project-card reveal" data-category="systems web design" data-project="referral">
-          <!-- TODO: replace placeholder with <img src="assets/projects/referral-board-cover.jpg" alt="Referral operations board interface" loading="lazy" /> -->
-          <div class="project-art art-four">
-            <div class="project-top"><span>Healthcare Dashboard</span><span>REF — REF/03</span></div>
-            <span class="project-giant">REF</span>
-            <small>Operations Board</small>
-            <span class="project-index">03 / 07</span>
-          </div>
-          <div class="project-info">
-            <div class="project-num">03</div>
-            <div>
-              <p class="project-cat">Healthcare Dashboard</p>
-              <h3>Referral Operations Board</h3>
-              <p>A referral monitoring interface for tracking incoming referrals, urgency, turnaround time, pending
-                referrals, and ward availability.</p>
-              <div class="tags"><span>Dashboard</span><span>UI/UX</span><span>Healthcare</span></div>
-              <button class="project-open" type="button" data-open="referral">View case <i
-                  aria-hidden="true">→</i></button>
-            </div>
-          </div>
-        </article>
-
-        <!-- 04 Rental -->
-        <article class="project-card reveal" data-category="systems web" data-project="rental">
-          <!-- TODO: replace placeholder with <img src="assets/projects/rental-system-cover.jpg" alt="Device rental tracker" loading="lazy" /> -->
-          <div class="project-art art-rental">
-            <div class="project-top"><span>Device Management</span><span>REF — RNT/04</span></div>
-            <span class="project-giant">RNT</span>
-            <small>Phone &amp; Tablet Rental</small>
-            <span class="project-index">04 / 07</span>
-          </div>
-          <div class="project-info">
-            <div class="project-num">04</div>
-            <div>
-              <p class="project-cat">Device Management Platform</p>
-              <h3>Centralized Phone &amp; Tablet Rental System</h3>
-              <p>Tracking and issuance workflow for shared phones and tablets, built on lightweight office tooling.</p>
-              <div class="tags"><span>Google Apps Script</span><span>Google Sheets</span><span>Android</span></div>
-              <button class="project-open" type="button" data-open="rental">View case <i
-                  aria-hidden="true">→</i></button>
-            </div>
-          </div>
-        </article>
-
-        <!-- 05 Pharmacy -->
-        <article class="project-card reveal" data-category="systems web" data-project="pharmacy">
-          <!-- TODO: replace placeholder with <img src="assets/projects/pharmacy-system-cover.jpg" alt="Pharmacy inventory and POS view" loading="lazy" /> -->
-          <div class="project-art art-pharma">
-            <div class="project-top"><span>Inventory / POS</span><span>REF — PHR/05</span></div>
-            <span class="project-giant">PHR</span>
-            <small>Pharmacy Management</small>
-            <span class="project-index">05 / 07</span>
-          </div>
-          <div class="project-info">
-            <div class="project-num">05</div>
-            <div>
-              <p class="project-cat">Healthcare / Inventory / POS</p>
-              <h3>Pharmacy Management System</h3>
-              <p>A pharmacy system featuring medicine inventory, batch tracking, expiry monitoring, POS transactions,
-                reports, and audit logs.</p>
-              <div class="tags"><span>Inventory</span><span>POS</span><span>Reports</span></div>
-              <button class="project-open" type="button" data-open="pharmacy">View case <i
-                  aria-hidden="true">→</i></button>
-            </div>
-          </div>
-        </article>
-
-        <!-- 06 PNA -->
-        <article class="project-card reveal" data-category="design print" data-project="pna">
-          <!-- TODO: replace placeholder with <img src="assets/projects/pna-caraga-cover.jpg" alt="PNA Caraga event identity materials" loading="lazy" /> -->
-          <div class="project-art art-three">
-            <div class="project-top"><span>Event Identity</span><span>REF — PNA/06</span></div>
-            <span class="project-giant">PNA</span>
-            <small>Caraga 2026</small>
-            <span class="project-index">06 / 07</span>
-          </div>
-          <div class="project-info">
-            <div class="project-num">06</div>
-            <div>
-              <p class="project-cat">Brand Identity / Event Design</p>
-              <h3>PNA Caraga Nurses Convention</h3>
-              <p>A complete event visual system covering branding, posters, event materials, apparel, and digital
-                communication.</p>
-              <div class="tags"><span>Branding</span><span>Event Design</span><span>Print</span></div>
-              <button class="project-open" type="button" data-open="pna">View case <i aria-hidden="true">→</i></button>
-            </div>
-          </div>
-        </article>
-
-        <!-- 07 Print production -->
-        <article class="project-card reveal" data-category="design print" data-project="print">
-          <!-- TODO: replace placeholder with <img src="assets/projects/print-production-cover.jpg" alt="Large-format and apparel production samples" loading="lazy" /> -->
-          <div class="project-art art-five">
-            <div class="project-top"><span>Print Production</span><span>REF — PRT/07</span></div>
-            <span class="project-giant">PRT</span>
-            <small>Event + Apparel Production</small>
-            <span class="project-index">07 / 07</span>
-          </div>
-          <div class="project-info">
-            <div class="project-num">07</div>
-            <div>
-              <p class="project-cat">Print Production</p>
-              <h3>Print &amp; Event Production</h3>
-              <p>Large-format printing, T-shirt production, DTF, sublimation, event backdrops, booth graphics, signage,
-                and merchandise.</p>
-              <div class="tags"><span>Large Format</span><span>DTF</span><span>Sublimation</span></div>
-              <button class="project-open" type="button" data-open="print">View case <i
-                  aria-hidden="true">→</i></button>
-            </div>
-          </div>
-        </article>
-      </div>
-      <p class="empty-note" id="emptyNote" hidden>No projects in this category yet — try another filter.</p>
-    </section>
-
     <section class="section-pad section-line" id="services" aria-labelledby="services-title">
       <div class="section-head reveal">
         <div>
-          <span class="eyebrow">03 / Services</span>
+          <span class="eyebrow">02 / Services</span>
           <h2 id="services-title">What I do</h2>
         </div>
         <p>Four practice areas. Each one ends in a usable output — a system, an interface, an identity, or a physical
@@ -419,7 +236,7 @@
     <section class="section-pad section-line production" id="production" aria-labelledby="production-title">
       <div class="section-head reveal">
         <div>
-          <span class="eyebrow">04 / Print &amp; Event Production</span>
+          <span class="eyebrow">03 / Print &amp; Event Production</span>
           <h2 id="production-title">From digital artwork to physical production.</h2>
         </div>
         <p>My creative work extends beyond UI and graphic design into real production — measured in feet and inches, not
@@ -486,7 +303,7 @@
     <section class="section-pad section-line process-section" id="process" aria-labelledby="process-title">
       <div class="section-head reveal">
         <div>
-          <span class="eyebrow">05 / Process</span>
+          <span class="eyebrow">04 / Process</span>
           <h2 id="process-title">From idea to output.</h2>
         </div>
         <p>A simple, production-aware workflow. Every step ends with something you can see, click, or hold.</p>
@@ -521,7 +338,7 @@
 
     <section class="section-pad section-line split-section" id="skills" aria-labelledby="skills-title">
       <div class="split-intro reveal">
-        <span class="eyebrow">06 / Skills</span>
+        <span class="eyebrow">05 / Skills</span>
         <h2 id="skills-title">One workflow.<br />Multiple disciplines.</h2>
         <p>My advantage is being able to understand both the digital build and the physical output.</p>
         <div class="split-facts">
@@ -598,7 +415,7 @@
     <section class="section-pad section-line" id="tools" aria-labelledby="tools-title">
       <div class="section-head reveal">
         <div>
-          <span class="eyebrow">07 / My Toolkit</span>
+          <span class="eyebrow">06 / My Toolkit</span>
           <h2 id="tools-title">Tools &amp; Software</h2>
         </div>
         <p>From development environments and web technologies to professional design and print-production software,
@@ -770,6 +587,31 @@
             <div class="tool-tile-info">
               <span class="tool-tile-name">JavaScript</span>
               <span class="tool-tile-sub">Logic &amp; Web Engine</span>
+            </div>
+          </div>
+
+          <div class="tool-tile">
+            <div class="tool-tile-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.336 6.182 14.975 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C7.666 17.818 9.027 19.2 12.001 19.2c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.336 13.382 8.975 12 6.001 12z" />
+              </svg>
+            </div>
+            <div class="tool-tile-info">
+              <span class="tool-tile-name">Tailwind CSS</span>
+              <span class="tool-tile-sub">Utility-First CSS</span>
+            </div>
+          </div>
+
+          <div class="tool-tile">
+            <div class="tool-tile-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z" />
+              </svg>
+            </div>
+            <div class="tool-tile-info">
+              <span class="tool-tile-name">REST API</span>
+              <span class="tool-tile-sub">Web Services &amp; APIs</span>
             </div>
           </div>
 
@@ -1038,15 +880,62 @@
             </div>
           </div>
 
+          <div class="tool-tile">
+            <div class="tool-tile-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5c0 .83-.67 1.5-1.5 1.5H7v2H5.5V9H8c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V9H13c.83 0 1.5.67 1.5 1.5v3zm3.5-3.5h-2.5v1.5H17V13h-1.5v2.5H14V9h4v1.5zM7 10.5h1v1H7v-1zm4.5 0h1v3h-1v-3z" />
+              </svg>
+            </div>
+            <div class="tool-tile-info">
+              <span class="tool-tile-name">PDF-XChange Editor</span>
+              <span class="tool-tile-sub">PDF Editing &amp; Prepress</span>
+            </div>
+          </div>
+
+          <div class="tool-tile">
+            <div class="tool-tile-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z" />
+              </svg>
+            </div>
+            <div class="tool-tile-info">
+              <span class="tool-tile-name">Google Workspace</span>
+              <span class="tool-tile-sub">Cloud Productivity Suite</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
     <section class="section-pad section-line about-section" id="about" aria-labelledby="about-title">
       <div class="about-title reveal">
-        <span class="eyebrow">08 / About Me</span>
+        <span class="eyebrow">07 / About Me</span>
         <h2 id="about-title">About Me</h2>
         <p class="about-flow">Concept → Design → Development → Production → Final Output</p>
+
+        <!-- Quick Stats Grid -->
+        <div class="about-stats-grid">
+          <div class="about-stat-card">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Years Practice</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="stat-number">MS CS</span>
+            <span class="stat-label">Units Earned</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="stat-number">BS CS</span>
+            <span class="stat-label">Batch 2016</span>
+          </div>
+          <div class="about-stat-card">
+            <span class="stat-number">ASTMMC</span>
+            <span class="stat-label">Tech &amp; Design Lead</span>
+          </div>
+        </div>
+
         <dl class="about-facts">
           <div>
             <dt>Current Role</dt>
@@ -1060,7 +949,7 @@
           </div>
           <div>
             <dt>Experience</dt>
-            <dd>Over 10 Years Professional Experience (Graphic Design, Print Production, Web & Systems
+            <dd>Over 10 Years Professional Experience (Graphic Design, Print Production, Web &amp; Systems
               Development)</dd>
           </div>
           <div>
@@ -1069,11 +958,37 @@
           </div>
         </dl>
       </div>
+
       <div class="about-copy reveal">
         <p class="lead">
-          Hi, I'm <strong>Ace Raz Cabuga</strong> — a Creative Technologist, Full-Stack Developer,
-          Graphic Designer, and Print Artist based in Tandag City, Philippines.
+          Hi, I’m <strong>Ace Raz Cabuga</strong> — a Creative Technologist, Web Developer, Graphic Designer, and Print
+          Artist, currently expanding my skills in full-stack development.
         </p>
+
+        <!-- 3 Practice Area Highlight Cards -->
+        <div class="about-pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-header">
+              <h3>Web &amp; Systems</h3>
+              <span class="pillar-num">01</span>
+            </div>
+            <p>Internal web applications, database systems, workflow automation, and reporting tools that support real operations.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-header">
+              <h3>Design &amp; Branding</h3>
+              <span class="pillar-num">02</span>
+            </div>
+            <p>Visual identities, social graphics, institutional IEC materials, posters, and print-ready creative layouts.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-header">
+              <h3>Print Production</h3>
+              <span class="pillar-num">03</span>
+            </div>
+            <p>Large-format printing, DTF, sublimation, apparel artwork, event backdrops, and prepress quality control.</p>
+          </div>
+        </div>
 
         <p>
           With over a decade of professional practice since 2013, my core strength lies in bridging
@@ -1101,8 +1016,8 @@
           design, and digital solution I build.
         </p>
         <div class="about-actions">
-          <a class="btn btn-primary" href="#contact"><span>Start a project</span><i aria-hidden="true">↗</i></a>
-          <a class="btn btn-ghost" href="#work"><span>See Selected Work</span><i aria-hidden="true">↓</i></a>
+          <button class="btn btn-primary" type="button" onclick="document.getElementById('startProjectBtn')?.click()"><span>Start a project</span><i aria-hidden="true">↗</i></button>
+          <a class="btn btn-ghost" href="https://www.behance.net/acegraphics2" target="_blank" rel="noopener"><span>View Behance Portfolio</span><i aria-hidden="true">↗</i></a>
         </div>
       </div>
     </section>
@@ -1110,7 +1025,7 @@
     <section class="section-pad section-line experience-section" id="experience" aria-labelledby="experience-title">
       <div class="section-head reveal">
         <div>
-          <span class="eyebrow">09 / Experience</span>
+          <span class="eyebrow">08 / Experience</span>
           <h2 id="experience-title">Work Experience</h2>
         </div>
         <p>Over a decade of professional practice spanning healthcare technology, web systems, graphic design,
@@ -1202,17 +1117,40 @@
           </div>
         </article>
 
-        <!-- Role 4: Chan Arts -->
+        <!-- Role 4: Chan Arts (Senior / Lead) -->
         <article class="timeline-item">
           <div class="timeline-period">
-            <span class="period-badge">2013 — 2017</span>
+            <span class="period-badge">2015 — 2017</span>
             <span class="timeline-loc">Tandag City, PH</span>
           </div>
           <div class="timeline-content">
-            <h3 class="timeline-role">Computer Layout Artist</h3>
+            <h3 class="timeline-role">Lead Computer Layout &amp; Prepress Artist</h3>
+            <p class="timeline-org">Chan Arts — Tandag City</p>
+            <p class="timeline-desc">Managed graphics layout production, vector artwork generation, large-format
+              tarpaulin prepress, custom apparel print setups, client proofing, and physical print output quality
+              control.</p>
+            <div class="timeline-tags">
+              <span>Graphic Layout</span>
+              <span>Prepress Setup</span>
+              <span>Vector Artwork</span>
+              <span>Large Format Print</span>
+              <span>Apparel Design</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Role 5: Chan Arts (Part-Time) -->
+        <article class="timeline-item">
+          <div class="timeline-period">
+            <span class="period-badge">2013 — 2015</span>
+            <span class="timeline-loc">Tandag City, PH</span>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-role">Computer Layout Artist (Part-Time)</h3>
             <p class="timeline-org">Chan Arts — Tandag City</p>
             <p class="timeline-desc">Executed digital graphics layouts, vector artwork generation, T-shirt graphic
-              preparation, tarpaulin layouts, and production-ready prepress files for physical print output.</p>
+              preparation, tarpaulin layouts, and production-ready prepress files — working part-time with frequent
+              overtime while pursuing college studies.</p>
             <div class="timeline-tags">
               <span>Computer Layout</span>
               <span>Vector Art</span>
@@ -1244,7 +1182,7 @@
     <section class="section-pad section-line" id="education" aria-labelledby="education-title">
       <div class="section-head reveal">
         <div>
-          <span class="eyebrow">10 / Education</span>
+          <span class="eyebrow">09 / Education</span>
           <h2 id="education-title">Education</h2>
         </div>
       </div>
@@ -1257,10 +1195,108 @@
         </article>
         <article class="education-card reveal">
           <span class="education-num">E.02</span>
-          <h3>Master of Science in Computer Science</h3>
+          <h3>Master of Science in Computer Science - OnGoing</h3>
           <p>North Eastern Mindanao State University — Tandag Campus</p>
           <p class="education-meta">Graduate Studies · Currently Enrolled with Earned Units</p>
         </article>
+      </div>
+    </section>
+
+    <section class="section-pad section-line reviews-section" id="reviews" aria-labelledby="reviews-title">
+      <div class="section-head reveal">
+        <div>
+          <span class="eyebrow">10 / Client Reviews</span>
+          <h2 id="reviews-title">Endorsements &amp; Feedback</h2>
+        </div>
+        <p>Feedback from colleagues, institutional leads, and clients across web systems, graphic design, and print production. <span class="marquee-hint">← Moving Right-to-Left (Hover to pause) →</span></p>
+      </div>
+
+      <div class="reviews-marquee reveal">
+        <div class="reviews-marquee-track">
+          <!-- Set 1 -->
+          <article class="review-card">
+            <div class="review-top">
+              <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <span class="review-tag">Event Identity &amp; Print</span>
+            </div>
+            <p class="review-text">
+              “Exceptional visual identity and event branding execution for our regional convention. From stage backdrops and tarpaulins to apparel and social graphics, everything was print-ready, high quality, and delivered on schedule.”
+            </p>
+            <div class="review-author">
+              <strong>Event Organizing Committee</strong>
+              <span>PNA Caraga Nurses Convention</span>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div class="review-top">
+              <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <span class="review-tag">Large Format &amp; Prepress</span>
+            </div>
+            <p class="review-text">
+              “Over a decade of working together, Ace has consistently delivered flawless prepress layouts, vector artwork, and large-format print outputs. His prepress discipline and CMYK color accuracy save so much production time.”
+            </p>
+            <div class="review-author">
+              <strong>Print Production Partner</strong>
+              <span>Tandag City Advertising &amp; Print</span>
+            </div>
+          </article>
+
+          <article class="review-card review-card-suggest">
+            <div class="review-suggest-inner">
+              <div class="suggest-badge">Client &amp; Colleague Feedback</div>
+              <h3>Have you worked with Ace?</h3>
+              <p>If you've collaborated on a web application, brand identity, or print project, share your endorsement directly via email!</p>
+              <div class="suggest-actions">
+                <a class="btn btn-primary btn-small" href="mailto:acegraphics2013@gmail.com?subject=Client%20Review%20%26%20Testimonial%20%E2%80%94%20Ace%20Raz%20Cabuga&amp;body=Hi%20Ace%2C%0A%0AHere%20is%20my%20feedback%20%2F%20testimonial%20for%20our%20project%3A%0A%0AName%3A%20%5BYour%20Name%5D%0ARole%20%2F%20Organization%3A%20%5BCompany%20%2F%20Office%5D%0AProject%20Type%3A%20%5BWeb%20System%20%2F%20Branding%20%2F%20Print%20Production%5D%0ARating%3A%205%20Stars%0A%0ATestimonial%20%2F%20Review%20Message%3A%0A%22%5BWrite%20your%20review%20here...%5D%22%0A%0ABest%20regards%2C%0A%5BYour%20Name%5D">
+                  <span>Submit via Email ↗</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Set 2 (Duplicate for Seamless Infinite Loop) -->
+          <article class="review-card" aria-hidden="true">
+            <div class="review-top">
+              <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <span class="review-tag">Event Identity &amp; Print</span>
+            </div>
+            <p class="review-text">
+              “Exceptional visual identity and event branding execution for our regional convention. From stage backdrops and tarpaulins to apparel and social graphics, everything was print-ready, high quality, and delivered on schedule.”
+            </p>
+            <div class="review-author">
+              <strong>Event Organizing Committee</strong>
+              <span>PNA Caraga Nurses Convention</span>
+            </div>
+          </article>
+
+          <article class="review-card" aria-hidden="true">
+            <div class="review-top">
+              <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <span class="review-tag">Large Format &amp; Prepress</span>
+            </div>
+            <p class="review-text">
+              “Over a decade of working together, Ace has consistently delivered flawless prepress layouts, vector artwork, and large-format print outputs. His prepress discipline and CMYK color accuracy save so much production time.”
+            </p>
+            <div class="review-author">
+              <strong>Print Production Partner</strong>
+              <span>Tandag City Advertising &amp; Print</span>
+            </div>
+          </article>
+
+          <article class="review-card review-card-suggest" aria-hidden="true">
+            <div class="review-suggest-inner">
+              <div class="suggest-badge">Client &amp; Colleague Feedback</div>
+              <h3>Have you worked with Ace?</h3>
+              <p>If you've collaborated on a web application, brand identity, or print project, share your endorsement directly via email!</p>
+              <div class="suggest-actions">
+                <a class="btn btn-primary btn-small" href="mailto:acegraphics2013@gmail.com?subject=Client%20Review%20%26%20Testimonial%20%E2%80%94%20Ace%20Raz%20Cabuga&amp;body=Hi%20Ace%2C%0A%0AHere%20is%20my%20feedback%20%2F%20testimonial%20for%20our%20project%3A%0A%0AName%3A%20%5BYour%20Name%5D%0ARole%20%2F%20Organization%3A%20%5BCompany%20%2F%20Office%5D%0AProject%20Type%3A%20%5BWeb%20System%20%2F%20Branding%20%2F%20Print%20Production%5D%0ARating%3A%205%20Stars%0A%0ATestimonial%20%2F%20Review%20Message%3A%0A%22%5BWrite%20your%20review%20here...%5D%22%0A%0ABest%20regards%2C%0A%5BYour%20Name%5D">
+                  <span>Submit via Email ↗</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -1272,15 +1308,13 @@
           <p class="contact-copy reveal">Whether it's a web system, visual identity, event material, website, or print
             project, I'm open to selected collaborations and creative opportunities.</p>
           <div class="contact-actions reveal">
-            <a class="btn btn-primary btn-large"
-              href="mailto:acegraphics2013@gmail.com?subject=Project%20inquiry%20—%20Ace%20Raz%20Cabuga"
-              id="emailLink"><span>Start a Project ↗</span></a>
+            <button class="btn btn-primary btn-large" type="button" id="startProjectBtn"><span>Start a Project ↓</span></button>
             <a class="btn btn-ghost"
-              href="mailto:acegraphics2013@gmail.com?subject=Hello%20—%20Ace%20Raz%20Cabuga"><span>Send an
-                Email</span></a>
+              href="mailto:acegraphics2013@gmail.com?subject=Direct%20Inquiry%20—%20Ace%20Raz%20Cabuga"><span>Send an Email ↗</span></a>
           </div>
           <ul class="social-list reveal" aria-label="Profiles and contact">
             <li><a href="mailto:acegraphics2013@gmail.com">Email ↗</a></li>
+            <li><a href="https://www.behance.net/acegraphics2" target="_blank" rel="noopener">Behance ↗</a></li>
             <li><a href="https://www.facebook.com/ace.graphixs/" target="_blank" rel="noopener">Facebook ↗</a></li>
             <li><a href="https://www.linkedin.com/in/ace-cabuga-17658629b" target="_blank" rel="noopener">LinkedIn ↗</a>
             </li>
@@ -1309,6 +1343,7 @@
               <option>UI/UX &amp; Design</option>
               <option>Branding &amp; Graphics</option>
               <option>Print / Event production</option>
+              <option>Client Review / Testimonial</option>
               <option>Other</option>
             </select>
           </label>
@@ -1336,7 +1371,6 @@
 
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#home">Home</a>
-      <a href="#work">Work</a>
       <a href="#services">Services</a>
       <a href="#production">Production</a>
       <a href="#process">Process</a>
@@ -1345,6 +1379,7 @@
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#education">Education</a>
+      <a href="#reviews">Reviews</a>
       <a href="#contact">Contact</a>
     </nav>
 

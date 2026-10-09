@@ -246,9 +246,16 @@
       });
     });
   }
-  // Keep the primary CTA in sync
-  if (emailLink) {
-    emailLink.href = 'mailto:' + TO + '?subject=' + encodeURIComponent('Project inquiry');
+  /* ---------- Start a Project button → focuses contact form ---------- */
+  const startProjectBtn = document.getElementById('startProjectBtn');
+  if (startProjectBtn) {
+    startProjectBtn.addEventListener('click', () => {
+      const nameInput = document.querySelector('#contactForm input[name="name"]');
+      if (nameInput) {
+        nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => nameInput.focus(), 350);
+      }
+    });
   }
 
   /* ---------- Case-study modal (reusable detail panel) ----------
