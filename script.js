@@ -636,6 +636,72 @@
     });
 
     if (rForm) {
+      const rFallback = document.getElementById('reviewFallback');
+      const rCopyBtn = document.getElementById('copyReviewBtn');
+      const rManualBtn = document.getElementById('manualEmailBtn');
+
+      function setNote(msg, color) {
+        if (!rNote) return;
+        rNote.style.color = color || '';
+        rNote.textContent = msg;
+      }
+
+      function showFallback(data) {
+        refreshEmailAppLink();
+        const mailto = buildMailto(data);
+        if (rEmailAppBtn) rEmailAppBtn.href = mailto;
+        if (rManualBtn) rManualBtn.href = mailto;
+        if (rFallback) rFallback.hidden = false;
+      }
+
+      function hideFallback() {
+        if (rFallback) rFallback.hidden = true;
+      }
+
+      function plainReviewText(d) {
+        return [
+          'Feedback Type: ' + (d.feedbackType || '-'),
+          'Name: ' + (d.name || '-'),
+          'Role & Organization: ' + (d.role || '-'),
+          'Service Category: ' + (d.category || '-'),
+          'Rating: ' + (d.rating || '-'),
+          '',
+          'Review / Endorsement:',
+          (d.message || '-'),
+          '',
+          'Suggestions:',
+          (d.suggestions || '-')
+        ].join('\n');
+      }
+
+      function saveLocally(d) {
+        try {
+          const key = 'ace_reviews_pending';
+          const arr = JSON.parse(localStorage.getItem(key) || '[]');
+          arr.push({ ...d, at: new Date().toISOString() });
+          localStorage.setItem(key, JSON.stringify(arr.slice(-50)));
+        } catch (_) { /* storage unavailable — ignore */ }
+      }
+
+      async function postJSON(url, payload, timeoutMs) {
+        const ctrl = new AbortController();
+        const t = setTimeout(() => ctrl.abort(), timeoutMs || 12000);
+        try {
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload),
+            signal: ctrl.signal
+          });
+          const text = await res.text();
+          let json = null;
+          try { json = JSON.parse(text); } catch (_) { /* HTML error page etc. */ }
+          return { res, json, text };
+        } finally {
+          clearTimeout(t);
+        }
+      }
+
       // Keep "Open Email App" link in sync so it always carries typed data.
       rForm.addEventListener('input', refreshEmailAppLink);
       rForm.addEventListener('change', refreshEmailAppLink);
@@ -651,44 +717,74 @@
         });
       }
 
+      if (rCopyBtn) {
+        rCopyBtn.addEventListener('click', async () => {
+          const text = plainReviewText(getReviewData());
+          try {
+            await navigator.clipboard.writeText(text);
+            setNote('✓ Copied! Paste it into an email to ' + REVIEW_TO + '.', '#10b981');
+          } catch (_) {
+            setNote('Copy blocked by browser. Email: ' + REVIEW_TO, '#f59e0b');
+          }
+        });
+      }
+
       rForm.addEventListener('submit', async function (e) {
         e.preventDefault();
         const data = getReviewData();
+        hideFallback();
 
         if (!data.name || !data.role || !data.message) {
-          if (rNote) {
-            rNote.style.color = '#ef4444';
-            rNote.textContent = 'Please complete your name, role/organization, and review message.';
-          }
+          setNote('Please complete your name, role/organization, and review message.', '#ef4444');
           return;
         }
         // Honeypot (spam bots): if filled, silently "succeed".
         const honey = rForm.querySelector('input[name="_honey"]');
         if (honey && String(honey.value || '').trim() !== '') {
-          if (rNote) {
-            rNote.style.color = '#10b981';
-            rNote.textContent = '✓ Thank you! Your endorsement has been sent to Ace.';
-          }
+          setNote('✓ Thank you! Your endorsement has been sent to Ace.', '#10b981');
           rForm.reset();
           setTimeout(() => closeRModal(), 1800);
           return;
         }
 
-        if (rNote) {
-          rNote.style.color = 'var(--text)';
-          rNote.textContent = 'Sending endorsement to ' + REVIEW_TO + '…';
-        }
+        setNote('Sending your ' + data.feedbackType.toLowerCase() + ' to ' + REVIEW_TO + '…', 'var(--text)');
         if (rSubmitBtn) {
           rSubmitBtn.disabled = true;
           rSubmitBtn.dataset.orig = rSubmitBtn.innerHTML;
           rSubmitBtn.innerHTML = '<span>Sending…</span>';
         }
 
+        // Tier 1: own backend (Vercel + Redis). Works in production, 404s locally.
         try {
-          const res = await fetch(REVIEW_AJAX, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify({
+          const api = await postJSON('/api/review', {
+            feedbackType: data.feedbackType,
+            name: data.name,
+            role: data.role,
+            category: data.category,
+            rating: data.rating,
+            message: data.message,
+            suggestions: data.suggestions
+          }, 10000);
+          if (api.res.ok && api.json && api.json.success === true) {
+            saveLocally(data);
+            setNote('✓ Thank you, ' + data.name.split(' ')[0] + '! Your feedback has been received.', '#10b981');
+            rForm.reset();
+            refreshEmailAppLink();
+            setTimeout(() => closeRModal(), 2400);
+            return;
+          }
+          console.info('[review] /api/review unavailable:', api.res.status, (api.text || '').slice(0, 160));
+        } catch (err) {
+          console.info('[review] /api/review failed, trying FormSubmit:', err && err.message);
+        }
+
+        // Tier 2: FormSubmit AJAX (direct email). Needs web-server origin + activation.
+        if (window.location.protocol === 'file:') {
+          setNote('This page was opened as a local file, so auto-send is blocked. Use the options below — your text is safe.', '#f59e0b');
+          showFallback(data);
+        } else {
+          try {
+            const fs = await postJSON(REVIEW_AJAX, {
               _subject: data.feedbackType + ' from ' + data.name + ' — Ace Raz Cabuga',
               _template: 'table',
               _captcha: 'false',
@@ -699,42 +795,39 @@
               rating: data.rating,
               review_message: data.message,
               suggestions: data.suggestions || '-'
-            })
-          });
+            }, 12000);
 
-          let ok = res.ok;
-          try {
-            const json = await res.clone().json();
-            // FormSubmit AJAX returns { success: "true"/"false" }
-            if (json && typeof json.success !== 'undefined') {
-              ok = ok && String(json.success).toLowerCase() !== 'false';
+            const okHTTP = fs.res.ok;
+            const okFlag = !fs.json || typeof fs.json.success === 'undefined'
+              ? true
+              : String(fs.json.success).toLowerCase() === 'true';
+
+            if (okHTTP && okFlag) {
+              saveLocally(data);
+              setNote('✓ Thank you, ' + data.name.split(' ')[0] + '! Your ' + data.feedbackType.toLowerCase() + ' has been sent via email to Ace.', '#10b981');
+              rForm.reset();
+              refreshEmailAppLink();
+              setTimeout(() => closeRModal(), 2400);
+              return;
             }
-          } catch (_) { /* non-JSON still counts if HTTP ok */ }
 
-          if (!ok) throw new Error('FormSubmit returned ' + res.status);
+            const serverMsg = (fs.json && fs.json.message) ? String(fs.json.message) : ('Email service returned ' + fs.res.status + '.');
+            console.warn('[review] FormSubmit rejected:', serverMsg);
+            // Tier 3: mailto fallback WITH data + copy option. Never lose input.
+            setNote(serverMsg + ' Your text is safe — opening your email app with everything filled in…', '#f59e0b');
+            showFallback(data);
+            setTimeout(() => { window.location.href = buildMailto(data); }, 900);
+          } catch (err) {
+            console.warn('[review] FormSubmit error:', err && err.message);
+            setNote('Could not reach the email service (' + ((err && err.name === 'AbortError') ? 'timed out' : 'offline or blocked') + '). Your text is safe — opening your email app…', '#f59e0b');
+            showFallback(data);
+            setTimeout(() => { window.location.href = buildMailto(data); }, 900);
+          }
+        }
 
-          if (rNote) {
-            rNote.style.color = '#10b981';
-            rNote.textContent = '✓ Thank you, ' + data.name.split(' ')[0] + '! Your ' + data.feedbackType.toLowerCase() + ' has been sent via email to Ace.';
-          }
-          rForm.reset();
-          refreshEmailAppLink();
-          setTimeout(() => closeRModal(), 2400);
-        } catch (err) {
-          // Fully-functional fallback: open email client WITH all data, nothing is lost.
-          if (rNote) {
-            rNote.style.color = '#f59e0b';
-            rNote.textContent = 'Could not send automatically. Opening your email app with your endorsement ready to send…';
-          }
-          refreshEmailAppLink();
-          setTimeout(() => {
-            window.location.href = buildMailto(data);
-          }, 800);
-        } finally {
-          if (rSubmitBtn) {
-            rSubmitBtn.disabled = false;
-            if (rSubmitBtn.dataset.orig) rSubmitBtn.innerHTML = rSubmitBtn.dataset.orig;
-          }
+        if (rSubmitBtn) {
+          rSubmitBtn.disabled = false;
+          if (rSubmitBtn.dataset.orig) rSubmitBtn.innerHTML = rSubmitBtn.dataset.orig;
         }
       });
     }

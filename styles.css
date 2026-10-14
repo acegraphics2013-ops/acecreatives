@@ -3532,6 +3532,37 @@ section[id] {
   line-height: 1.5;
 }
 
+.review-fallback {
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px dashed rgba(245, 158, 11, 0.5);
+  border-radius: 10px;
+  background: rgba(245, 158, 11, 0.06);
+}
+
+.review-fallback[hidden] {
+  display: none !important;
+}
+
+.review-fallback-text {
+  margin: 0 0 10px;
+  font-size: 0.82rem;
+  color: #e8c47a;
+  line-height: 1.5;
+}
+
+.review-fallback-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.review-fallback-email {
+  margin: 10px 0 0;
+  font-size: 0.8rem;
+  color: var(--muted, #8e8e86);
+}
+
 .review-modal-form .form-row {
   gap: 14px;
 }
