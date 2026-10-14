@@ -533,7 +533,10 @@
     });
   })();
 
-  /* ---------- Review Modal Controller ---------- */
+  /* ---------- Review Modal Controller (Endorsements & Feedback) ----------
+     "Submit via Email" buttons open this modal. "Send Endorsement" sends
+     directly to acegraphics2013@gmail.com via FormSubmit AJAX, with a
+     mailto: fallback that preserves all typed data. */
   (function initReviewModal() {
     const rModal = document.getElementById('reviewModal');
     const rBackdrop = document.getElementById('reviewModalBackdrop');
@@ -541,13 +544,58 @@
     const rForm = document.getElementById('reviewForm');
     const rNote = document.getElementById('reviewFormNote');
     const rSubmitBtn = document.getElementById('submitReviewBtn');
+    const rEmailAppBtn = document.getElementById('openEmailAppBtn');
+    const REVIEW_TO = 'acegraphics2013@gmail.com';
+    const REVIEW_AJAX = 'https://formsubmit.co/ajax/' + REVIEW_TO;
 
     if (!rModal) return;
+
+    function getReviewData() {
+      if (!rForm) return { name: '', role: '', category: '', rating: '', message: '' };
+      const fd = new FormData(rForm);
+      return {
+        name: String(fd.get('name') || '').trim(),
+        role: String(fd.get('role_organization') || '').trim(),
+        category: String(fd.get('service_category') || '').trim(),
+        rating: String(fd.get('rating') || '').trim(),
+        message: String(fd.get('review_message') || '').trim()
+      };
+    }
+
+    function buildMailto(d) {
+      const subject = encodeURIComponent('Client Review & Testimonial — ' + (d.name || 'New Endorsement') + ' — Ace Raz Cabuga');
+      const lines = [
+        'Hi Ace,',
+        '',
+        'I would like to share my endorsement:',
+        '',
+        'Name: ' + (d.name || '-'),
+        'Role & Organization: ' + (d.role || '-'),
+        'Service Category: ' + (d.category || '-'),
+        'Rating: ' + (d.rating || '-'),
+        '',
+        'Review / Endorsement:',
+        (d.message || '-'),
+        '',
+        '— Sent from acecreatives portfolio (Endorsements & Feedback)'
+      ];
+      return 'mailto:' + REVIEW_TO + '?subject=' + subject + '&body=' + encodeURIComponent(lines.join('\n'));
+    }
+
+    function refreshEmailAppLink() {
+      if (!rEmailAppBtn) return;
+      rEmailAppBtn.href = buildMailto(getReviewData());
+    }
 
     function openRModal() {
       rModal.removeAttribute('hidden');
       rModal.classList.add('is-open');
       document.body.style.overflow = 'hidden';
+      if (rNote) {
+        rNote.style.color = '';
+        rNote.textContent = '';
+      }
+      refreshEmailAppLink();
       const firstInput = rForm ? rForm.querySelector('input[name="name"]') : null;
       if (firstInput) setTimeout(() => firstInput.focus(), 100);
     }
@@ -575,42 +623,103 @@
     });
 
     if (rForm) {
+      // Keep "Open Email App" link in sync so it always carries typed data.
+      rForm.addEventListener('input', refreshEmailAppLink);
+      rForm.addEventListener('change', refreshEmailAppLink);
+
+      if (rEmailAppBtn) {
+        rEmailAppBtn.addEventListener('click', () => {
+          refreshEmailAppLink();
+          // Let the mailto: href handle it natively; just give feedback.
+          if (rNote) {
+            rNote.style.color = 'var(--text)';
+            rNote.textContent = 'Opening your email app with your endorsement…';
+          }
+        });
+      }
+
       rForm.addEventListener('submit', async function (e) {
         e.preventDefault();
-        if (rNote) {
-          rNote.style.color = 'var(--text)';
-          rNote.textContent = 'Sending endorsement...';
-        }
-        if (rSubmitBtn) rSubmitBtn.disabled = true;
+        const data = getReviewData();
 
-        try {
-          const formData = new FormData(rForm);
-          const res = await fetch(rForm.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          });
-
-          if (res.ok) {
-            if (rNote) {
-              rNote.style.color = '#10b981';
-              rNote.textContent = '✓ Thank you! Your endorsement has been sent to Ace.';
-            }
-            rForm.reset();
-            setTimeout(() => closeRModal(), 2400);
-          } else {
-            throw new Error('Server returned non-200');
-          }
-        } catch (err) {
+        if (!data.name || !data.role || !data.message) {
           if (rNote) {
             rNote.style.color = '#ef4444';
-            rNote.textContent = 'Form submission paused. Opening email app...';
+            rNote.textContent = 'Please complete your name, role/organization, and review message.';
           }
+          return;
+        }
+        // Honeypot (spam bots): if filled, silently "succeed".
+        const honey = rForm.querySelector('input[name="_honey"]');
+        if (honey && String(honey.value || '').trim() !== '') {
+          if (rNote) {
+            rNote.style.color = '#10b981';
+            rNote.textContent = '✓ Thank you! Your endorsement has been sent to Ace.';
+          }
+          rForm.reset();
+          setTimeout(() => closeRModal(), 1800);
+          return;
+        }
+
+        if (rNote) {
+          rNote.style.color = 'var(--text)';
+          rNote.textContent = 'Sending endorsement to ' + REVIEW_TO + '…';
+        }
+        if (rSubmitBtn) {
+          rSubmitBtn.disabled = true;
+          rSubmitBtn.dataset.orig = rSubmitBtn.innerHTML;
+          rSubmitBtn.innerHTML = '<span>Sending…</span>';
+        }
+
+        try {
+          const res = await fetch(REVIEW_AJAX, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              _subject: 'New Client Review / Endorsement from ' + data.name + ' — Ace Raz Cabuga',
+              _template: 'table',
+              _captcha: 'false',
+              name: data.name,
+              role_organization: data.role,
+              service_category: data.category,
+              rating: data.rating,
+              review_message: data.message
+            })
+          });
+
+          let ok = res.ok;
+          try {
+            const json = await res.clone().json();
+            // FormSubmit AJAX returns { success: "true"/"false" }
+            if (json && typeof json.success !== 'undefined') {
+              ok = ok && String(json.success).toLowerCase() !== 'false';
+            }
+          } catch (_) { /* non-JSON still counts if HTTP ok */ }
+
+          if (!ok) throw new Error('FormSubmit returned ' + res.status);
+
+          if (rNote) {
+            rNote.style.color = '#10b981';
+            rNote.textContent = '✓ Thank you, ' + data.name.split(' ')[0] + '! Your endorsement has been sent to Ace.';
+          }
+          rForm.reset();
+          refreshEmailAppLink();
+          setTimeout(() => closeRModal(), 2400);
+        } catch (err) {
+          // Fully-functional fallback: open email client WITH all data, nothing is lost.
+          if (rNote) {
+            rNote.style.color = '#f59e0b';
+            rNote.textContent = 'Could not send automatically. Opening your email app with your endorsement ready to send…';
+          }
+          refreshEmailAppLink();
           setTimeout(() => {
-            window.location.href = "mailto:acegraphics2013@gmail.com?subject=Client%20Review%20%26%20Testimonial%20%E2%80%94%20Ace%20Raz%20Cabuga";
+            window.location.href = buildMailto(data);
           }, 800);
         } finally {
-          if (rSubmitBtn) rSubmitBtn.disabled = false;
+          if (rSubmitBtn) {
+            rSubmitBtn.disabled = false;
+            if (rSubmitBtn.dataset.orig) rSubmitBtn.innerHTML = rSubmitBtn.dataset.orig;
+          }
         }
       });
     }
