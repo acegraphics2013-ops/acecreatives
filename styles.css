@@ -37,6 +37,23 @@
 
 html {
   scroll-behavior: smooth;
+  height: auto;
+  min-height: 100%;
+  overflow-y: auto;
+  overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+  html {
+    overflow-x: hidden;
+  }
+}
+
+/* Never let a component stylesheet override the native [hidden] behavior.
+   (Prevents full-screen fixed overlays like .review-modal from invisibly
+   covering the page and intercepting scroll/clicks when closed.) */
+[hidden] {
+  display: none !important;
 }
 
 body {
@@ -46,8 +63,17 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
+  min-height: 100vh;
+  min-height: 100dvh;
   line-height: 1.6;
+}
+
+@supports not (overflow: clip) {
+  body {
+    overflow-x: hidden;
+  }
 }
 
 ::selection {
@@ -118,6 +144,7 @@ strong {
   right: 0;
   height: 2px;
   z-index: 200;
+  pointer-events: none;
 }
 
 .scroll-progress span {
@@ -3345,6 +3372,7 @@ section[id] {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -3352,12 +3380,18 @@ section[id] {
   padding: 20px;
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.review-modal[hidden] {
+  display: none !important;
 }
 
 .review-modal.is-open {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .review-modal-backdrop {
@@ -3384,7 +3418,10 @@ section[id] {
   transform: scale(0.94) translateY(12px);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   max-height: 90vh;
+  max-height: 90dvh;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .review-modal.is-open .review-modal-card {
@@ -3476,9 +3513,35 @@ section[id] {
   margin-top: 20px;
 }
 
+.review-modal-form textarea {
+  resize: vertical;
+  min-height: 88px;
+  line-height: 1.6;
+}
+
+.review-modal-form .optional-tag {
+  font-size: 0.72rem;
+  color: var(--muted, #8e8e86);
+  font-weight: 400;
+}
+
+.review-modal-form .form-note {
+  margin: 14px 0 0;
+  font-size: 0.85rem;
+  min-height: 1.4em;
+  line-height: 1.5;
+}
+
+.review-modal-form .form-row {
+  gap: 14px;
+}
+
 @media (max-width: 580px) {
   .review-modal-card {
     padding: 22px;
+  }
+  .review-modal-form .form-row {
+    grid-template-columns: 1fr;
   }
   .review-modal-actions {
     flex-direction: column;

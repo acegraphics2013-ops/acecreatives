@@ -43,8 +43,17 @@
 
   /* ---------- Scroll: header state + progress + back-to-top ---------- */
   const header = document.querySelector('.site-header');
-  const scrollBar = document.getElementById('scrollBar');
+  const scrollBar = document.getElementById('scrollBar') || document.getElementById('scrollProgress');
   const toTopBtn = document.getElementById('toTopBtn');
+
+  // Failsafe: never leave the page stuck with scroll locked (e.g. after a modal).
+  function unlockPageScroll() {
+    if (!document.getElementById('reviewModal')?.classList.contains('is-open') &&
+        !document.getElementById('projectModal')?.classList.contains('open')) {
+      document.body.style.overflow = '';
+    }
+  }
+  window.addEventListener('load', unlockPageScroll);
 
   function onScroll() {
     const y = window.scrollY || document.documentElement.scrollTop;
@@ -551,24 +560,25 @@
     if (!rModal) return;
 
     function getReviewData() {
-      if (!rForm) return { name: '', role: '', category: '', rating: '', message: '' };
+      if (!rForm) return { name: '', role: '', category: '', rating: '', message: '', suggestions: '', feedbackType: 'Review / Endorsement' };
       const fd = new FormData(rForm);
       return {
         name: String(fd.get('name') || '').trim(),
         role: String(fd.get('role_organization') || '').trim(),
         category: String(fd.get('service_category') || '').trim(),
         rating: String(fd.get('rating') || '').trim(),
-        message: String(fd.get('review_message') || '').trim()
+        message: String(fd.get('review_message') || '').trim(),
+        suggestions: String(fd.get('suggestions') || '').trim(),
+        feedbackType: String(fd.get('feedback_type') || 'Review / Endorsement').trim()
       };
     }
 
     function buildMailto(d) {
-      const subject = encodeURIComponent('Client Review & Testimonial — ' + (d.name || 'New Endorsement') + ' — Ace Raz Cabuga');
+      const subject = encodeURIComponent(d.feedbackType + ' — ' + (d.name || 'New Client Feedback') + ' — Ace Raz Cabuga');
       const lines = [
         'Hi Ace,',
         '',
-        'I would like to share my endorsement:',
-        '',
+        'Feedback Type: ' + (d.feedbackType || '-'),
         'Name: ' + (d.name || '-'),
         'Role & Organization: ' + (d.role || '-'),
         'Service Category: ' + (d.category || '-'),
@@ -576,6 +586,9 @@
         '',
         'Review / Endorsement:',
         (d.message || '-'),
+        '',
+        'Suggestions:',
+        (d.suggestions || '-'),
         '',
         '— Sent from acecreatives portfolio (Endorsements & Feedback)'
       ];
@@ -676,14 +689,16 @@
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
-              _subject: 'New Client Review / Endorsement from ' + data.name + ' — Ace Raz Cabuga',
+              _subject: data.feedbackType + ' from ' + data.name + ' — Ace Raz Cabuga',
               _template: 'table',
               _captcha: 'false',
+              feedback_type: data.feedbackType,
               name: data.name,
               role_organization: data.role,
               service_category: data.category,
               rating: data.rating,
-              review_message: data.message
+              review_message: data.message,
+              suggestions: data.suggestions || '-'
             })
           });
 
@@ -700,7 +715,7 @@
 
           if (rNote) {
             rNote.style.color = '#10b981';
-            rNote.textContent = '✓ Thank you, ' + data.name.split(' ')[0] + '! Your endorsement has been sent to Ace.';
+            rNote.textContent = '✓ Thank you, ' + data.name.split(' ')[0] + '! Your ' + data.feedbackType.toLowerCase() + ' has been sent via email to Ace.';
           }
           rForm.reset();
           refreshEmailAppLink();

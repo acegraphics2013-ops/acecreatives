@@ -1461,8 +1461,8 @@
       <button class="review-modal-close" type="button" id="closeReviewModal" aria-label="Close modal">✕</button>
       <div class="review-modal-header">
         <span class="suggest-badge">Client &amp; Colleague Feedback</span>
-        <h3 id="reviewModalTitle">Share Your Endorsement</h3>
-        <p>Your review will be sent directly to <strong>acegraphics2013@gmail.com</strong>.</p>
+        <h3 id="reviewModalTitle">Share Your Review &amp; Suggestions</h3>
+        <p>Send your endorsement or suggestion directly to <strong>acegraphics2013@gmail.com</strong> — it opens here in one step, no email app needed.</p>
       </div>
 
       <form class="review-modal-form" id="reviewForm" action="https://formsubmit.co/acegraphics2013@gmail.com" method="POST">
@@ -1470,6 +1470,14 @@
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <label>Feedback Type
+          <select name="feedback_type" id="feedbackType">
+            <option>Review / Endorsement</option>
+            <option>Suggestion / Improvement Idea</option>
+            <option>Both — Review + Suggestion</option>
+          </select>
+        </label>
 
         <div class="form-row">
           <label>Your Name
@@ -1494,6 +1502,7 @@
             <select name="rating">
               <option>★★★★★ (5 Stars - Excellent)</option>
               <option>★★★★☆ (4 Stars - Great)</option>
+              <option>★★★☆☆ (3 Stars - Good)</option>
             </select>
           </label>
         </div>
@@ -1502,8 +1511,12 @@
           <textarea name="review_message" rows="4" placeholder="Describe your experience collaborating with Ace, quality of work, turnaround time..." required></textarea>
         </label>
 
+        <label>Suggestions <span class="optional-tag">(optional)</span>
+          <textarea name="suggestions" rows="3" placeholder="Any ideas to improve the work, service, or collaboration?"></textarea>
+        </label>
+
         <div class="review-modal-actions">
-          <button class="btn btn-primary" type="submit" id="submitReviewBtn"><span>Send Endorsement ↗</span></button>
+          <button class="btn btn-primary" type="submit" id="submitReviewBtn"><span>Submit via Email ↗</span></button>
           <a class="btn btn-outline" id="openEmailAppBtn" href="mailto:acegraphics2013@gmail.com?subject=Client%20Review%20%26%20Testimonial%20%E2%80%94%20Ace%20Raz%20Cabuga"><span>Open Email App ↗</span></a>
         </div>
         <p class="form-note" id="reviewFormNote" role="status" aria-live="polite"></p>
